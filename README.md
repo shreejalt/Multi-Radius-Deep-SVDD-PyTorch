@@ -1,5 +1,5 @@
-# Appendix A: PyTorch Implementation of Multi Radius Deep SVDD
-This code is built upon the original implementation of [Lukas Ruff](https://github.com/lukasruff/Deep-SVDD-PyTorch). We have added FINCH algorithm and Multi-radius code to incorporate the multi-radius learning of the clusters. Thanks to **Lukas Ruff** for the excellent codebase. The original paper was presented in ICML 2018 with the name of 'Deep One-Class Classification'.  
+# PyTorch Implementation of Multi Radius Deep SVDD - Extended Version of Deep SVDD (Deep One Class Classification)
+This code is built upon the original implementation of [Lukas Ruff](https://github.com/lukasruff/Deep-SVDD-PyTorch). We have added FINCH algorithm and Multi-radius code to incorporate the multi-radius learning of the clusters. Thanks to **Lukas Ruff** for the excellent codebase. The original paper was presented in ICML 2018 with the name of 'Deep One-Class Classification'. This work was a part of the project ***EECS 6412: Data Mining*** 
 
 
 ## Abstract
@@ -53,7 +53,7 @@ mkdir log/mnist_test
 cd src
 
 # run experiment
-python main.py mnist mnist_LeNet ../log/mnist_test ../data --objective one-class --lr 0.0001 --n_epochs 150 --lr_milestone 50 --batch_size 200 --weight_decay 0.5e-6 --pretrain True --ae_lr 0.0001 --ae_n_epochs 150 --ae_lr_milestone 50 --ae_batch_size 200 --ae_weight_decay 0.5e-3 --normal_class 3 --normal_class 0 --normal_class 1 --use_multi_radius True;
+python main.py mnist mnist_LeNet ../log/mnist_test ../data --objective one-class --lr 0.0001 --n_epochs 150 --lr_milestone 50 --batch_size 200 --weight_decay 0.5e-6 --pretrain True --ae_lr 0.0001 --ae_n_epochs 150 --ae_lr_milestone 50 --ae_batch_size 200 --ae_weight_decay 0.5e-3 --normal_class 3 --normal_class 0 --normal_class 1 --use_multi_radius True
 ```
 This example trains a One-Class Deep SVDD model where digit 1, 0, and 3  are considered to be the normal classes. Autoencoder pretraining is used for parameter initialization.
 
@@ -71,10 +71,19 @@ mkdir log/cifar10_test
 cd src
 
 # run experiment
-python main.py cifar10 cifar10_LeNet ../log/cifar10_test ../data --objective one-class --lr 0.0001 --n_epochs 150 --lr_milestone 50 --batch_size 200 --weight_decay 0.5e-6 --pretrain True --ae_lr 0.0001 --ae_n_epochs 350 --ae_lr_milestone 250 --ae_batch_size 200 --ae_weight_decay 0.5e-6 --normal_class 3 --normal_class 1 --normal_class 0 --sue_multi_radius True;
+python main.py cifar10 cifar10_LeNet ../log/cifar10_test ../data --objective one-class --lr 0.0001 --n_epochs 150 --lr_milestone 50 --batch_size 200 --weight_decay 0.5e-6 --pretrain True --ae_lr 0.0001 --ae_n_epochs 350 --ae_lr_milestone 250 --ae_batch_size 200 --ae_weight_decay 0.5e-6 --normal_class 3 --normal_class 1 --normal_class 0 --use_multi_radius True
 ```
 This example trains a One-Class Deep SVDD model where cats 0, 1, and 3 are considered to be the normal classes. 
 Autoencoder pretraining is used for parameter initialization.
+
+## Results
+
+| Method             | Num Groups: 2 | Num Groups: 3 | Num Groups: 4 | 
+| ------------------ | --------------- | --------------- | ---------------- |
+| Original Deep SVDD          | 94.34      | 91.22     | 89.23       | 
+| MultiRadius Deep SVDD | 96.32           | 94.13           | 93.36            | 
+
+Results on MNIST Dataset, taking 2, 3, and 4 classes as inliers. Detailed Results can be found from ***Data_Mining_Project_Report.pdf***
 
 ## Citations
 
